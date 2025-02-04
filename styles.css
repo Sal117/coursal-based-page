@@ -1,0 +1,114 @@
+/* Base Styles */
+body {
+    margin: 0; /* Removes default browser margin */
+    font-family: 'Poppins', sans-serif; /* Sets a modern font */
+    background: linear-gradient(135deg, #d1f4ff, #eaf9d9); /* Gradient background */
+    color: #333; /* Default text color */
+    display: flex; /* Centers content vertically and horizontally */
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Full height of the viewport */
+    padding: 20px; /* Adds padding around the layout */
+  }
+  
+  /* Main Layout Container */
+  .layout {
+    display: flex; /* Creates a side-by-side layout */
+    align-items: center; /* Aligns items vertically */
+    gap: 40px; /* Space between the image and the card */
+    max-width: 1200px; /* Sets maximum width for the container */
+    width: 100%; /* Makes it responsive */
+  }
+  
+  /* Image Section (Left) */
+  .image-section {
+    flex: 1; /* Takes up 1 part of the layout */
+    text-align: center; /* Centers the image horizontally */
+  }
+  
+  .image-section img {
+    width: 100%; /* Makes the image responsive */
+    max-width: 400px; /* Limits the size of the image */
+    border-radius: 16px; /* Rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adds a soft shadow */
+  }
+  
+  /* Big Card Container (Right) */
+  .big-card {
+    flex: 1.5; /* Takes up 1.5 parts of the layout */
+    background: #ffffff; /* White background for contrast */
+    border-radius: 16px; /* Rounded corners */
+    padding: 30px; /* Adds space inside the container */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+  }
+  
+  .big-card:hover {
+    transform: translateY(-5px); /* Lifts the card slightly on hover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Enhances shadow on hover */
+  }
+  
+  /* Big Card Header */
+  .big-card-header {
+    margin-bottom: 20px; /* Space below the header */
+  }
+  
+  .big-card-header h1 {
+    font-size: 24px; /* Title font size */
+    color: #4a90e2; /* Calming blue color */
+    margin-bottom: 10px; /* Space below the title */
+  }
+  
+  .big-card-header p {
+    font-size: 14px; /* Subtitle font size */
+    line-height: 1.5; /* Improves text readability */
+    color: #555; /* Slightly muted color */
+  }
+  
+  /* Cards Section */
+  .cards-section {
+    display: flex; /* Horizontal layout for the cards */
+    flex-wrap: wrap; /* Wraps cards to the next row if needed */
+    gap: 15px; /* Space between cards */
+    justify-content: flex-start; /* Aligns cards to the left */
+  }
+  
+  /* Individual Card */
+  .card {
+    background-color: #f0f4f8; /* Soft gray background */
+    border: 2px solid #4a90e2; /* Blue border */
+    border-radius: 12px; /* Rounded corners */
+    padding: 15px; /* Space inside the card */
+    width: 160px; /* Fixed width for cards */
+    text-align: center; /* Centers content inside the card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    position: relative; /* For positioning elements inside */
+    overflow: hidden; /* Prevents content overflow */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Adds shadow on hover */
+  }
+  
+  /* Icon inside the Card */
+  .card .icon {
+    font-size: 30px; /* Icon size */
+    margin-bottom: 10px; /* Space below the icon */
+    color: #4a90e2; /* Matches the theme */
+  }
+  
+  /* Card Title */
+  .card h3 {
+    font-size: 16px; /* Title font size */
+    margin-bottom: 5px; /* Space below the title */
+    color: #333; /* Dark text color */
+  }
+  
+  /* Card Description */
+  .card p {
+    font-size: 12px; /* Text font size */
+    color: #666; /* Muted gray color */
+    line-height: 1.4; /* Improves readability */
+  }
+  
