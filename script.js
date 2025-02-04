@@ -6,6 +6,16 @@ let carousel = document.querySelector(".carousel");
 let listHTML = document.querySelector(".carousel .list");
 let seeMoreButtons = document.querySelectorAll(".seeMore");
 let backButton = document.getElementById("back");
+//New parts of the see more parts
+const seeMoreBtn = document.getElementById('seeMoreBtn');
+const bigCard = document.getElementById('bigCard');
+
+// Add an event listener to the see more button
+seeMoreBtn.addEventListener('click', () => {
+  // Toggle the visibility of the big card
+  bigCard.style.display = bigCard.style.display === 'none' ? 'block' : 'none';
+});
+//Untill here
 
 nextButton.onclick = function () {
   showSlider("next");
