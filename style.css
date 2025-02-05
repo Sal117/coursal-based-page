@@ -1,11 +1,16 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 body {
-  overflow-x: hidden; /* Prevents horizontal scrolling but allows vertical */
-  overflow-y: auto; /* Enables vertical scrolling */
+  overflow: visible; /* Prevents horizontal scrolling but allows vertical */
+ 
   line-height: 1.6;
   margin: 0;
-  background-image: linear-gradient(70deg, #e8dcf1, rgb(178, 103, 235));
+
+/*  background-image: linear-gradient(to right, 
+  rgba(163, 201, 241, 0.5) 20%,   
+  rgba(255, 154, 139, 0.5) 40%,   
+  rgba(47, 79, 79, 0.5) 70%);  */  
+
   font-family: Poppins;
   direction: ltr; /* Left to Right? or rtl adjust and show later text direction */
   text-align:center; /* Align text to the left */
@@ -36,13 +41,20 @@ body {
   --item5-filter: blur(40px);
   --item5-zIndex: 7;
   --item5-opacity: 0;
+
+  
+  --light-blue: #add8e6;   /* 10% Light Blue */
+  --salmon: #fa8072;        /* 30% Salmon */
+  --dark-green:  #006400;    /* 60% Dark Green */
+  
+  
 }
 /*from hereeeeeeeeeeee*/
 
 
 
 .carousel.showDetail .list .item:nth-child(2) .big-card {
-  opacity: 1;
+ 
   width: 50%;
   position: absolute;
   right: 0;
@@ -57,83 +69,100 @@ body {
 
 
 /* Big Card Container (Right) */
-.carousel.showDetail .list .item:nth-child(2).big-card {
-  flex: 1; /* Takes up 1.5 parts of the layout */
-  background-image: linear-gradient(70deg, #e8dcf1, rgb(178, 103, 235));
-  font-family: Poppins; /* White background for contrast */
-  border-radius: 16px; /* Rounded corners */
-  padding: 30px; /* Adds space inside the container */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+/* Big Card */
+.big-card {
+  flex: 1.5;
+  background-image: linear-gradient(70deg,White,rgb(207, 246, 172));
+  position: absolute;
+
+  font-family: Poppins;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.big-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px; /* Adjust size as needed */
+  height: 250px;
+  background-image: linear-gradient(70deg, #add8e6, #006400, #fa8072); /* Same gradient as the card */
+  border-radius: 50%;
+  filter: blur(100px);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  opacity: 0.6; /* You can adjust the opacity for a more subtle effect */
+}
+
 
 .big-card:hover {
-  transform: translateY(-5px); /* Lifts the card slightly on hover */
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Enhances shadow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
-
-/* Big Card Header */
 .big-card-header {
   margin-bottom: 20px; /* Space below the header */
 }
 
+/* Big Card Header */
 .big-card-header h1 {
-  font-size: 24px; /* Title font size */
-  color: #4a90e2; /* Calming blue color */
-  margin-bottom: 10px; /* Space below the title */
+  font-size: 24px;
+  color: var(--light-blue);/* Calming blue */
+  margin-bottom: 10px;
 }
 
 .big-card-header p {
-  font-size: 14px; /* Subtitle font size */
-  line-height: 1.5; /* Improves text readability */
-  color: #555; /* Slightly muted color */
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--dark-green)
 }
 
 /* Cards Section */
 .cards-section {
-  display: flex; /* Horizontal layout for the cards */
-  flex-wrap: wrap; /* Wraps cards to the next row if needed */
-  gap: 15px; /* Space between cards */
-  justify-content: flex-start; /* Aligns cards to the left */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
 }
 
 /* Individual Card */
 .card {
-  background-color: #f0f4f8; /* Soft gray background */
-  border: 2px solid #4a90e2; /* Blue border */
-  border-radius: 12px; /* Rounded corners */
-  padding: 15px; /* Space inside the card */
-  width: 160px; /* Fixed width for cards */
-  text-align: center; /* Centers content inside the card */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
-  position: relative; /* For positioning elements inside */
-  overflow: hidden; /* Prevents content overflow */
+  background-image: linear-gradient(70deg,White,rgb(176, 240, 238));
+  position: absolute; /* Mint green to soft purple gradient */
+  border: 2px solid  var(--light-blue); /* Slightly darker purple for contrast */
+  border-radius: 40px;
+  padding: 15px;
+  width: 160px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow:visible;
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Slight lift on hover */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Adds shadow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px var(--salmon) ;
 }
 
 /* Icon inside the Card */
 .card .icon {
-  font-size: 30px; /* Icon size */
-  margin-bottom: 10px; /* Space below the icon */
-  color: #4a90e2; /* Matches the theme */
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
 /* Card Title */
 .card h3 {
-  font-size: 16px; /* Title font size */
-  margin-bottom: 5px; /* Space below the title */
-  color: #333; /* Dark text color */
+  font-size: 16px;
+  margin-bottom: 5px;
+  color:var(--light-blue);
 }
 
 /* Card Description */
 .card p {
-  font-size: 12px; /* Text font size */
-  color: #666; /* Muted gray color */
-  line-height: 1.4; /* Improves readability */
+  font-size: 12px;
+  color:var(--dark-green); /* Slightly lighter gray for better readability */
+  line-height: 1.4;
 }
 
 /*umtill hereeeeeeeee*/
@@ -153,14 +182,14 @@ header .logo {
 header nav a {
   margin-left: 30px;
   text-decoration: none;
-  color: #794570;
+  color:var(--salmon);
   font-weight: 500;
 }
 /* carousel */
 .carousel {
   position: relative;
   height: 910px;
-  overflow: hidden;
+  overflow:visible;
   margin-top: -50px;
   display: flex;
   justify-content: center;
@@ -230,7 +259,7 @@ header nav a {
 }.carousel .list .item .introduce .title {
   font-size: 1.8em;
   font-weight: 600;
-  color: #fff;
+  color: var(--dark-green);
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7); /* Adds depth to text */
   line-height: 1em;
 }
@@ -238,12 +267,12 @@ header nav a {
 .carousel .list .item .introduce .topic {
   font-size: 3em;
   font-weight: 700;
-  color: #fff;
+  color: var(--dark-green);
 }
 
 .carousel .list .item .introduce .des {
   font-size: 1.2em;
-  color: rgba(255, 255, 255, 0.8); /* Subtle text color */
+  color:var(--dark-green); /* Subtle text color */
 }
 
 .carousel .list .item:nth-child(n + 6) {
@@ -262,7 +291,7 @@ header nav a {
   transition: background 0.5s;
 }
 .carousel .list .item .introduce .seeMore:hover {
-  background: #374ac1;
+  background: var(--light-blue);
   transform: translateY(-5px);
   
 }
@@ -393,7 +422,7 @@ header nav a {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
   max-width: 120%;
   margin: auto;
-  overflow: hidden;
+  overflow: visible;
   transform: translateY(65px);
   animation: fadeIn 1s forwards;
   
@@ -445,7 +474,7 @@ header nav a {
 .carousel.showDetail .list .item:nth-child(2) .detail .title {
   font-size: 3.5em;
   font-weight: 700;
-  color: #222;
+  color: var(--salmon);
   letter-spacing: 1px;
   margin-bottom: 20px;
   transition: font-size 0.5s ease, color 0.5s ease;
@@ -455,7 +484,7 @@ header nav a {
   display: flex;
   gap: 10px;
   width: 100%;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--light-blue);
   margin-top: 20px;
   transition: opacity 0.5s ease, margin-top 0.5s ease;
 }
@@ -470,24 +499,24 @@ header nav a {
 
 .carousel.showDetail .list .item:nth-child(2) .detail .specifications div p:nth-child(1) {
   font-weight: bold;
-  color: #444;
+  color:var(--salmon);
 }
 
 .carousel.showDetail .list .item:nth-child(2) .checkout button {
   font-family: Poppins, sans-serif;
   background-color: transparent;
-  border: 1px solid #555;
+  border: 1px solid var(--light-blue);
   margin-left: 10px;
   padding: 10px 20px;
   letter-spacing: 1.5px;
   font-weight: 600;
-  color: #555;
+  color:var(--salmon);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .carousel.showDetail .list .item:nth-child(2) .checkout button:nth-child(2) {
-  background-color: #693eff;
-  color: #eee;
+  background-color: var(--salmon);
+  color: var(--light-blue);
 }
 
 .carousel.showDetail .list .item:nth-child(2) .detail .title,
@@ -579,7 +608,8 @@ header nav a {
   width: 500px;
   height: 300px;
   content: "";
-  background-image: linear-gradient(70deg, #302c33, blue);
+  /*spot color*/
+  background-image: linear-gradient(70deg,var(--dark-green),var(--salmon),var(--light-blue));
   position: absolute;
   z-index: -1;
   border-radius: 20% 30% 80% 10%;
@@ -628,7 +658,7 @@ header nav a {
 .carousel .list .item .detail .title {
   font-size: 3.5em;
   font-weight: 700;
-  color: #222;
+  color: var(--dark-green);
   letter-spacing: 1px;
   margin-bottom: 20px;
   animation-delay: 0.5s; /* Delay to sequence content appearance */
@@ -653,9 +683,36 @@ header nav a {
 }
 @media screen and (max-width: 767px) {
   /* mobile */
-  .carousel {
-    height: 600px;
+  :root {
+    --item1-transform: translateY(-50%) translateX(0%) scale(1.2); /* Adjusted transform */
+    --item3-transform: translateY(20%) translateX(15%) scale(0.8);
+    --item4-transform: translateY(40%) translateX(25%) scale(0.5);
+    --item5-transform: translateY(60%) translateX(35%) scale(0.3);
   }
+
+  .carousel {
+    height: 80vh; /* Adjusted height for mobile */
+  }
+
+  .carousel .list .item {
+    width: 90%;
+    font-size: 10px;
+  }
+
+  .carousel .list .item img {
+    width: 70%; /* Adjusted for mobile image sizes */
+    margin: 0 auto; /* Center image */
+    display: block;
+  }
+
+  .carousel .list .item .introduce {
+    width: 250px;
+  }
+
+  .arrows {
+    bottom: 5vh; /* Adjusted positioning */
+  }
+
   .carousel .list .item {
     width: 100%;
     font-size: 10px;
@@ -679,10 +736,120 @@ header nav a {
   .carousel.showDetail .list .item:nth-child(2) .detail .des {
     height: 100px;
     overflow: auto;
+
   }
+
+  
   .carousel.showDetail .list .item:nth-child(2) .detail .checkout {
     display: flex;
     width: max-content;
     float: right;
   }
+
+
+  /*Cards Section resizing*/
+  /* Adjust big card for mobile */
+ /* Adjust the big card to be square */
+ .carousel.showDetail .list .item:nth-child(2) .big-card {
+  margin-top:650px;
+  width: 80%; /* Width to make it more compact */
+  height: 30vh; /* Remove height to make it square based on padding */
+  padding-top: 80%; /* Set the height to be equal to width, making it a square */
+  position: relative; /* To allow content inside to be positioned over it */
+  background-image: url('https://staging.relationary.com/wp-content/uploads/2025/01/4-removebg-preview.png'); /* Set image as background */
+  background-size: cover; /* Ensure the background image covers the area */
+  background-position: center; /* Center the background image */
+  border-radius: 20px; /* Optional: Add rounded corners to the card */
+  text-align: center; /* Center the text inside the big card */
+  pointer-events: auto;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  direction: rtl; /* Ensure left-to-right text alignment */
 }
+
+/* Title and explanation inside the big card */
+.big-card-header h1 {
+  font-size: 18px;
+  color:var(--salmon); /* White text for better contrast against the image */
+  margin-top: 10px; /* Add space from top */
+  margin-bottom: 10px;
+}
+
+.big-card-header p {
+  font-size: 12px;
+  color:var(--salmon); /* White text */
+}
+
+/* Cards section inside the big card */
+.cards-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Space between cards */
+  justify-content: center; /* Center the cards inside */
+  position: absolute; /* Position the cards over the background */
+  bottom: 10%; /* Move it up slightly from the bottom */
+  left: 50%;
+  transform: translateX(-50%); /* Center the cards horizontally */
+  width: 100%;
+  padding: 10px;
+}
+
+/* Individual Cards */
+.card {
+  width: 45%; /* Make the cards take up 48% of the width (2 cards per row) */
+  max-width: 140px; /* Max width for the cards */
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.7); /* Light transparent background for readability */
+  border-radius: 10px; /* Optional: Add rounded corners to the cards */
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
+}
+
+/* Card icons */
+.card .icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Card title */
+.card h3 {
+  font-size: 14px;
+  color: var(--light-blue); /* Light blue color for the title */
+}
+
+/* Card description */
+.card p {
+  font-size: 10px;
+  color: var(--dark-green);
+}
+
+/* Adjust the hover effect for mobile */
+.card:hover {
+  transform: none; /* Disable hover effect on mobile */
+  box-shadow: none; /* Remove shadow */
+}
+
+/* Checkout button inside the big card */
+.carousel.showDetail .list .item:nth-child(2) .detail .checkout {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Style for checkout button */
+.checkout-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: var(--light-blue);
+  border-radius: 5px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  background-color: var(--salmon); /* Change color on hover */
+}
+}
+
+
