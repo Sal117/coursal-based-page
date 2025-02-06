@@ -1,0 +1,380 @@
+/* 
+   We import Poppins again 
+   (remove if it's already in your general.css)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* 
+   Shared color & transform variables
+   10% Light Blue, 30% Salmon, 60% Dark Green
+*/
+:root {
+  --item1-transform: translateX(-100%) translateY(-5%) scale(1.5);
+  --item1-filter: blur(30px);
+  --item1-zIndex: 11;
+  --item1-opacity: 0;
+
+  /* Main front item (#2) */
+  --item2-transform: translateX(0);
+  --item2-filter: blur(0px);
+  --item2-zIndex: 10;
+  --item2-opacity: 1;
+
+  /* First behind item (#3) */
+  --item3-transform: translate(40%, 0%) scale(0.85);
+  --item3-filter: blur(8px);
+  --item3-zIndex: 9;
+  --item3-opacity: 0.6;
+
+  /* Second behind item (#4) */
+  --item4-transform: translate(75%, 0%) scale(0.7);
+  --item4-filter: blur(15px);
+  --item4-zIndex: 8;
+  --item4-opacity: 0.4;
+
+  /* Everything further is hidden/offscreen (#5, etc.) */
+  --item5-transform: translateX(120%) scale(0.4);
+  --item5-filter: blur(30px);
+  --item5-zIndex: 7;
+  --item5-opacity: 0;
+
+  --light-blue: #add8e6;
+  --salmon: #fa8072;
+  --dark-green: #006400;
+}
+
+/* ------------------------------
+   MAIN CAROUSEL CONTAINER
+------------------------------ */
+.carousel {
+  position: relative;
+  height: 860px;
+  overflow: visible;
+  margin-top: -50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 
+   Soft glow behind the carousel 
+   Gently changes on hover
+*/
+.carousel::before {
+  content: "";
+  width: 500px;
+  height: 300px;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-10%, -50%);
+  border-radius: 30% 40% 50% 30%;
+  background-image: linear-gradient(70deg, var(--dark-green), var(--salmon), var(--light-blue));
+  filter: blur(150px);
+  transition: 2s ease;
+}
+.carousel:hover::before {
+  transform: translate(-50%, -50%) scale(1.1) rotate(15deg);
+}
+
+/* 
+   The .list container 
+   where .item elements are placed 
+*/
+.carousel .list {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  transition: transform 0.5s ease; /* Smooth sliding on wheel or arrow */
+}
+
+/* ------------------------------
+   INDIVIDUAL .item
+------------------------------ */
+.carousel .list .item {
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  font-size: 15px;
+  transition: 
+    opacity 0.7s ease,
+    width 0.7s ease,
+    transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  opacity: 0; /* hidden by default */
+}
+
+/* 
+   The front item (#2)
+   Full opacity, no blur
+*/
+.carousel .list .item:nth-child(2) {
+  z-index: var(--item2-zIndex);
+  transform: var(--item2-transform);
+  filter: var(--item2-filter);
+  opacity: var(--item2-opacity);
+}
+
+/* 
+   The second behind item (#3)
+   Slightly scaled & blurred
+*/
+.carousel .list .item:nth-child(3) {
+  z-index: var(--item3-zIndex);
+  transform: var(--item3-transform);
+  filter: var(--item3-filter);
+  opacity: var(--item3-opacity);
+}
+
+/* 
+   The third behind item (#4)
+   More scaled down & blurred
+*/
+.carousel .list .item:nth-child(4) {
+  z-index: var(--item4-zIndex);
+  transform: var(--item4-transform);
+  filter: var(--item4-filter);
+  opacity: var(--item4-opacity);
+  pointer-events: none;
+}
+
+/* 
+   Everything else (#5, #1, etc.)
+   Essentially offscreen or invisible
+*/
+.carousel .list .item:nth-child(5),
+.carousel .list .item:nth-child(1) {
+  z-index: var(--item5-zIndex);
+  transform: var(--item5-transform);
+  filter: var(--item5-filter);
+  opacity: var(--item5-opacity);
+  pointer-events: none;
+}
+
+/* 
+   Only #2 & #3 items are clickable
+   The rest are behind or offscreen
+*/
+.carousel .list .item:nth-child(2),
+.carousel .list .item:nth-child(3) {
+  pointer-events: auto;
+}
+
+/* 
+   If you need .active, here it is:
+*/
+.carousel .list .item.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 
+   Main images within each .item 
+   Right side, center vertically
+*/
+.carousel .list .item img {
+  width: 55%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; 
+  transition: transform 1.0s ease, opacity 1.0s ease;
+}
+.carousel .list .item img:hover {
+  transform: translateY(-50%) scale(1.03);
+}
+
+/* ------------------------------
+   TEXT BLOCK (.introduce)
+------------------------------ */
+.carousel .list .item .introduce {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  width: 400px;
+}
+
+/* 
+   We only show text fully on the main item (#2)
+*/
+.carousel .list .item:nth-child(2) .introduce {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Title */
+.carousel .list .item .introduce .title {
+  font-size: 1.7em;
+  font-weight: 700;
+  color: var(--dark-green);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  margin-bottom: 0.3em;
+  transition: color 0.5s ease;
+}
+.carousel .list .item .introduce .title:hover {
+  color: var(--salmon);
+}
+
+/* Subheading / topic */
+.carousel .list .item .introduce .topic {
+  font-size: 3em;
+  font-weight: 900;
+  color: var(--dark-green);
+  margin-bottom: 0.5em;
+}
+
+/* Description text with fade-up effect */
+.carousel .list .item .introduce .des {
+  font-size: 1.1em;
+  color: var(--dark-green);
+  line-height: 1.4;
+  margin-bottom: 1em;
+  opacity: 0; 
+  transform: translateY(10px);
+  animation: fadeTextIn 1s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* "See More" link */
+.carousel .list .item .introduce .seeMore {
+  font-family: "Poppins", sans-serif;
+  padding: 5px 0;
+  border: none;
+  border-bottom: 1px solid #555;
+  background-color: transparent;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.carousel .list .item .introduce .seeMore:hover {
+  color: var(--salmon);
+  transform: translateY(-2px);
+}
+
+/* Keyframe for the .des text fade-up */
+@keyframes fadeTextIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------
+   NEXT/PREV ANIMATIONS
+------------------------------ */
+@keyframes transformFromPosition2 {
+  from {
+    transform: var(--item2-transform);
+    filter: var(--item2-filter);
+    opacity: var(--item2-opacity);
+  }
+}
+@keyframes transformFromPosition3 {
+  from {
+    transform: var(--item3-transform);
+    filter: var(--item3-filter);
+    opacity: var(--item3-opacity);
+  }
+}
+@keyframes transformFromPosition4 {
+  from {
+    transform: var(--item4-transform);
+    filter: var(--item4-filter);
+    opacity: var(--item4-opacity);
+  }
+}
+@keyframes transformFromPosition5 {
+  from {
+    transform: var(--item5-transform);
+    filter: var(--item5-filter);
+    opacity: var(--item5-opacity);
+  }
+}
+@keyframes transformFromPosition1 {
+  from {
+    transform: var(--item1-transform);
+    filter: var(--item1-filter);
+    opacity: var(--item1-opacity);
+  }
+}
+
+/* 
+   Classes .next and .prev 
+   triggered by arrow or wheel 
+*/
+.carousel.next .item:nth-child(1) {
+  animation: transformFromPosition2 0.5s ease-in-out 1 forwards;
+}
+.carousel.next .item:nth-child(2) {
+  animation: transformFromPosition3 0.7s ease-in-out 1 forwards;
+}
+.carousel.next .item:nth-child(3) {
+  animation: transformFromPosition4 0.9s ease-in-out 1 forwards;
+}
+.carousel.next .item:nth-child(4) {
+  animation: transformFromPosition5 1.1s ease-in-out 1 forwards;
+}
+.carousel.prev .item:nth-child(5) {
+  animation: transformFromPosition4 0.5s ease-in-out 1 forwards;
+}
+.carousel.prev .item:nth-child(4) {
+  animation: transformFromPosition3 0.7s ease-in-out 1 forwards;
+}
+.carousel.prev .item:nth-child(3) {
+  animation: transformFromPosition2 0.9s ease-in-out 1 forwards;
+}
+.carousel.prev .item:nth-child(2) {
+  animation: transformFromPosition1 1.1s ease-in-out 1 forwards;
+}
+
+/* ------------------------------
+   ARROWS
+------------------------------ */
+.arrows {
+  position: absolute;
+  bottom: 20px;
+  width: 1140px;
+  max-width: 90%;
+  display: flex;
+  justify-content: space-between;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#prev,
+#next {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-family: "Poppins", sans-serif;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  background: transparent;
+  color: #333;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+#prev:hover,
+#next:hover {
+  background-color: var(--light-blue);
+  color: #fff;
+}
+
+/* 
+   If you have a back button removed, hide it. 
+   Or remove this if not used.
+*/
+#back {
+  display: none;
+}
